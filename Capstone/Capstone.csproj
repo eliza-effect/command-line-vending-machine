@@ -51,13 +51,14 @@
     <Compile Include="Classes\VendableItem.cs" />
     <Compile Include="Classes\VendingFileReader.cs" />
     <Compile Include="Classes\VendingFileWriter.cs" />
+    <Compile Include="Classes\VendingMachine.cs" />
     <Compile Include="Classes\VendingMachineCLI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="vendingmachine.csv" />
+    <None Include="Classes\vendingmachine.csv" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
