@@ -8,7 +8,7 @@ namespace Capstone.Classes
 {
     public class Chips: VendableItem
     {
-        protected override string Consume()
+        public override string Consume()
         {
             return "Crunch, Crunch, YUM!";
         }

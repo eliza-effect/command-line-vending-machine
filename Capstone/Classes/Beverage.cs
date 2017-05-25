@@ -9,7 +9,7 @@ namespace Capstone.Classes
     public class Beverage: VendableItem
     {
       
-        protected override string Consume()
+        public override string Consume()
         {
             return "Glug, Glug, YUM!";
         }

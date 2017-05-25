@@ -13,7 +13,7 @@ namespace Capstone
         {
             VendingMachineCLI menu = new VendingMachineCLI();
             menu.DisplayMenu();
-
+            
         }
     }
 }

@@ -18,9 +18,8 @@ namespace Capstone.Classes
         {
             get { return this.name; }
         }
-        protected abstract string Consume();
-        //protected abstract decimal Cost();
-        //protected abstract string Name();
+        public abstract string Consume();
+
 
         
     }

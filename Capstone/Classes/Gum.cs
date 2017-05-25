@@ -8,7 +8,7 @@ namespace Capstone.Classes
 {
     public class Gum: VendableItem
     {
-        protected override string Consume()
+        public override string Consume()
         {
             return "Chew, Chew, YUM!";
         }

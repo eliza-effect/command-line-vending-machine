@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Capstone.Classes
 {
-    class ChangeMaker
+    public class ChangeMaker
     {
+        private int numQuarters;
+        private int numDimes;
+        private int numNickels;
+
+
     }
 }

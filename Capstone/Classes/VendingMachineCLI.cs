@@ -11,7 +11,7 @@ namespace Capstone.Classes
         public void DisplayMenu()
         {
             VendingMachine vendor = new VendingMachine();
-            Dictionary<string,  List<VendableItem> > test = new Dictionary<string, List<VendableItem>>();
+            //Dictionary<string,  List<VendableItem> > test = new Dictionary<string, List<VendableItem>>();
 
             PrintHeader();
 
@@ -29,7 +29,7 @@ namespace Capstone.Classes
                 if (input == "1")
                 {
                     Console.WriteLine("Displaying items: ");
-                    //loop through entire list to display contents
+
                     foreach(KeyValuePair<string, List<VendableItem>> kvp in vendor.Items)
                     {
                         Console.WriteLine(kvp.Key + "   " + kvp.Value[0].Name + "   " + kvp.Value[0].Price + "   Quantity: " + kvp.Value.Count);
