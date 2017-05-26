@@ -8,6 +8,8 @@ namespace Capstone.Classes
 {
     public class ChangeMaker
     {
+        private decimal balance;
+
         private int numQuarters = 0;
         public int NumQuarters
         {
@@ -25,9 +27,7 @@ namespace Capstone.Classes
         {
             get { return this.numNickels; }
         }
-        private decimal balance;
       
-
         public ChangeMaker(decimal balance)
         {
             this.balance = balance;
@@ -36,7 +36,6 @@ namespace Capstone.Classes
         public List<int> MakeChange()
         {
             List<int> coinCount = new List<int>();
-
             Console.WriteLine("Your change is: $" + balance);
             while (balance > 0)
             {

@@ -51,6 +51,16 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Classes\BevTests.cs" />
+    <Compile Include="Classes\CandyTests.cs" />
+    <Compile Include="Classes\ChipsTests.cs" />
+    <Compile Include="Classes\GumTests.cs" />
+    <Compile Include="Classes\ChangeMakerTest.cs" />
+    <Compile Include="Classes\VendingMachineCLITest.cs" />
+    <Compile Include="Classes\VendingFileWriterTest.cs" />
+    <Compile Include="Classes\VendingMachineTest.cs" />
+    <Compile Include="Classes\VendingFIleReaderTest.cs" />
+    <Compile Include="Classes\VendableItemTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

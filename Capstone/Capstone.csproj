@@ -47,6 +47,7 @@
     <Compile Include="Classes\Candy.cs" />
     <Compile Include="Classes\ChangeMaker.cs" />
     <Compile Include="Classes\Chips.cs" />
+    <Compile Include="Classes\DisplayItems.cs" />
     <Compile Include="Classes\Gum.cs" />
     <Compile Include="Classes\VendableItem.cs" />
     <Compile Include="Classes\VendingFileReader.cs" />
