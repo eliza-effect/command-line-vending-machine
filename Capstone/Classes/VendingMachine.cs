@@ -51,7 +51,7 @@ namespace Capstone.Classes
                     decimal amt = decimal.Parse(Console.ReadLine());
                     if ((amt != 1) && (amt != 2) && (amt != 5) && (amt != 10) && (amt != 20))
                     {
-                        Console.WriteLine("Please enter a whole dollar amount!");
+                        Console.WriteLine("Please enter a valid dollar bill!");
                         break;
                     }
                     this.FeedMoney(amt);
@@ -60,7 +60,7 @@ namespace Capstone.Classes
                 {
                     Console.WriteLine("Select Product");
                     Console.WriteLine("Which slot are you choosing from?");
-                    string slot = Console.ReadLine();
+                    string slot = Console.ReadLine().ToUpper();
                     this.Purchase(slot);
 
                 }
@@ -84,7 +84,7 @@ namespace Capstone.Classes
         public void FeedMoney(decimal dollars)
         {
             VendingFileWriter vfw = new VendingFileWriter();
-            vfw.WriteToLog("FEED MONEY:   " + balance + "  " + (balance + dollars));
+            vfw.WriteToLog("FEED MONEY:   $" + balance + "  $" + (balance + dollars));
             this.balance += dollars;
         }
 
@@ -96,10 +96,11 @@ namespace Capstone.Classes
                 {
                     VendableItem selection = items[slot][0];
                     VendingFileWriter vfw = new VendingFileWriter();
-                    vfw.WriteToLog($"{items[slot][0].Name}  {slot}   " + balance + "  " + (balance - items[slot][0].Price));
+                    vfw.WriteToLog($"{items[slot][0].Name}  {slot}   $" + balance + "  $" + (balance - items[slot][0].Price));
                     balance -= items[slot][0].Price;
                     purchasedItems.Add(items[slot][0]);
                     items[slot].Remove(items[slot][0]);
+                   
                     return selection;
                 }
                 else
@@ -119,6 +120,8 @@ namespace Capstone.Classes
         {
             ChangeMaker c = new ChangeMaker(this.balance);
             c.MakeChange();
+            VendingFileWriter vfw = new VendingFileWriter();
+            vfw.WriteToLog("Give Change:   " + balance + "  " + ("$0.00"));
             this.balance = 0;
             foreach(VendableItem e in purchasedItems)
             {

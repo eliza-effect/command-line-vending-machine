@@ -40,13 +40,14 @@ namespace Capstone.Classes
             Console.WriteLine("Your change is: $" + balance);
             while (balance > 0)
             {
-                double temp = (double) balance * 100;
+               int temp = (int) (balance * 100);
                 numQuarters = (int)temp / 25;
                 temp = temp % 25;
                 numDimes = (int)temp / 10;
                 temp = temp % 10;
                 numNickels = (int)temp / 5;
                 temp = temp % 5;
+                balance = (int) temp;
 
                 if (temp > 0)
                 {
