@@ -38,8 +38,7 @@ namespace Capstone.Classes
                 }
                 else if (input == "2")
                 {
-                    VendingMachine vend = new VendingMachine();
-                    vend.PurchaseMenu();
+                    vendor.PurchaseMenu();
                 }
                 else if (input == "Q")
                 {

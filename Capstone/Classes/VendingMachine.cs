@@ -9,8 +9,9 @@ namespace Capstone.Classes
     public class VendingMachine
     {
         private Dictionary<string, List<VendableItem>> items = new VendingFileReader().StockMachine();
+        private List<VendableItem> purchasedItems = new List<VendableItem>();
         private bool isSoldOut;
-        private decimal balance = (decimal) 0.00;
+        private decimal balance = (decimal)0.00;
 
         public Dictionary<string, List<VendableItem>> Items
         {
@@ -25,47 +26,6 @@ namespace Capstone.Classes
         public bool IsSoldOut(string slot)
         {
             return items[slot].Count == 0;
-        }
-
-        public void FeedMoney(decimal dollars)
-        {
-            VendingFileWriter vfw = new VendingFileWriter();
-            vfw.WriteToLog("FEED MONEY:   " + balance + "  " + (balance + dollars));
-            this.balance += dollars;
-        }
-
-        public VendableItem Purchase(string slot)
-        {
-
-            if (!IsSoldOut(slot))
-            {
-                if (items[slot][0].Price <= this.balance)
-                {
-                    VendableItem selection = items[slot][0];
-                    VendingFileWriter vfw = new VendingFileWriter();
-                    vfw.WriteToLog($"{items[slot][0].Name}  {slot}   " + balance + "  " + (balance-items[slot][0].Price));
-                    Console.WriteLine(items[slot][0].Consume());
-                    balance -= items[slot][0].Price;
-                    items[slot].Remove(items[slot][0]);
-                    return selection;
-                }
-                else
-                {
-                    Console.WriteLine("Insufficient funds. Please insert more money!");
-                    return null;   // return nothing because not enough money!
-                }
-            }
-            else
-            {
-                Console.WriteLine("Item is sold out. Please select something else.");
-                return null;    //return nothing because it is sold out
-            }
-        }
-
-        public ChangeMaker CompleteTransaction() //placeholder
-        {
-            ChangeMaker c = new ChangeMaker();
-            return c;
         }
 
         public void PurchaseMenu()
@@ -89,6 +49,11 @@ namespace Capstone.Classes
                     Console.WriteLine("Feed Money");
                     Console.WriteLine("How much money are you putting in?");
                     decimal amt = decimal.Parse(Console.ReadLine());
+                    if ((amt != 1) && (amt != 2) && (amt != 5) && (amt != 10) && (amt != 20))
+                    {
+                        Console.WriteLine("Please enter a whole dollar amount!");
+                        break;
+                    }
                     this.FeedMoney(amt);
                 }
                 else if (input == "2")
@@ -101,7 +66,8 @@ namespace Capstone.Classes
                 }
                 else if (input == "3")
                 {
-                    Console.WriteLine("Finish Transaction");
+                    Console.WriteLine("Finishing Transaction");
+                    this.CompleteTransaction();
                 }
                 else if (input == "q")
                 {
@@ -112,9 +78,55 @@ namespace Capstone.Classes
                 {
                     Console.WriteLine("Please try again");
                 }
-
             }
-
         }
+
+        public void FeedMoney(decimal dollars)
+        {
+            VendingFileWriter vfw = new VendingFileWriter();
+            vfw.WriteToLog("FEED MONEY:   " + balance + "  " + (balance + dollars));
+            this.balance += dollars;
+        }
+
+        public VendableItem Purchase(string slot)
+        {
+            if (!IsSoldOut(slot))
+            {
+                if (items[slot][0].Price <= this.balance)
+                {
+                    VendableItem selection = items[slot][0];
+                    VendingFileWriter vfw = new VendingFileWriter();
+                    vfw.WriteToLog($"{items[slot][0].Name}  {slot}   " + balance + "  " + (balance - items[slot][0].Price));
+                    balance -= items[slot][0].Price;
+                    purchasedItems.Add(items[slot][0]);
+                    items[slot].Remove(items[slot][0]);
+                    return selection;
+                }
+                else
+                {
+                    Console.WriteLine("Insufficient funds. Please insert more money!");
+                    return null;   // return nothing because not enough money!
+                }
+            }
+            else
+            {
+                Console.WriteLine("Item is sold out. Please select something else.");
+                return null;    //return nothing because it is sold out
+            }
+        }
+
+        public void CompleteTransaction() //placeholder
+        {
+            ChangeMaker c = new ChangeMaker(this.balance);
+            c.MakeChange();
+            this.balance = 0;
+            foreach(VendableItem e in purchasedItems)
+            {
+                Console.WriteLine(e.Consume());
+            }
+            purchasedItems.Clear();
+            
+        }
+
     }
 }

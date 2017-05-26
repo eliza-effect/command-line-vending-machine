@@ -11,8 +11,7 @@ namespace Capstone.Classes
     {
         static string directory = Directory.GetCurrentDirectory();
         static string path = Path.Combine(directory, "log.txt");
-
-
+        
         public void WriteToLog(string message)
         {
             try
