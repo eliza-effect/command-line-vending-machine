@@ -49,7 +49,8 @@ namespace Capstone.Classes
                     Console.WriteLine("Feed Money");
                     Console.WriteLine("How much money are you putting in?");
                     decimal amt = decimal.Parse(Console.ReadLine());
-                    if ((amt != 1) && (amt != 2) && (amt != 5) && (amt != 10) && (amt != 20))
+                    decimal[] validBills = { 1, 2, 5, 10, 20 };
+                    if (!validBills.Contains(amt))
                     {
                         Console.WriteLine("Please enter a valid dollar bill!");
                         break;
