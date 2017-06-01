@@ -34,100 +34,42 @@ namespace Capstone.Classes
                         List<VendableItem> itemsList = new List<VendableItem>();
                         string line = str.ReadLine();
                         string[] parts = line.Split('|');
+                        const int SlotIndex = 0;
+                        const int ProductIndex = 1;
+                        const int PriceIndex = 2;
 
-                        if (parts[0].StartsWith("A"))
+                        if (parts[SlotIndex].StartsWith("A"))
                         {
                             for(int i = 0; i < 5; i++)
                             {
-                                itemsList.Add(new Chips(decimal.Parse(parts[2]), parts[1]));
+                                itemsList.Add(new Chips(decimal.Parse(parts[PriceIndex]), parts[ProductIndex]));
                             }
-                            inventory.Add(parts[0], itemsList);
+                            inventory.Add(parts[SlotIndex], itemsList);
                         }
-                        else if (parts[0].StartsWith("B"))
+                        else if (parts[SlotIndex].StartsWith("B"))
                         {
                             for (int i = 0; i < 5; i++)
                             {
-                                itemsList.Add(new Candy(decimal.Parse(parts[2]), parts[1]));
+                                itemsList.Add(new Candy(decimal.Parse(parts[PriceIndex]), parts[ProductIndex]));
                             }
-                            inventory.Add(parts[0], itemsList);
+                            inventory.Add(parts[SlotIndex], itemsList);
                         }
-                        else if (parts[0].StartsWith("C"))
+                        else if (parts[SlotIndex].StartsWith("C"))
                         {
                             for (int i = 0; i < 5; i++)
                             {
-                                itemsList.Add(new Beverage(decimal.Parse(parts[2]), parts[1]));
+                                itemsList.Add(new Beverage(decimal.Parse(parts[PriceIndex]), parts[ProductIndex]));
                             }
-                            inventory.Add(parts[0], itemsList);
+                            inventory.Add(parts[SlotIndex], itemsList);
                         }
-                        else if (parts[0].StartsWith("D"))
+                        else if (parts[SlotIndex].StartsWith("D"))
                         {
                             for (int i = 0; i < 5; i++)
                             {
-                                itemsList.Add(new Gum(decimal.Parse(parts[2]), parts[1]));
+                                itemsList.Add(new Gum(decimal.Parse(parts[PriceIndex]), parts[ProductIndex]));
                             }
-                            inventory.Add(parts[0], itemsList);
+                            inventory.Add(parts[SlotIndex], itemsList);
                         }
-
-                        //for (int i = 0; i < 4; i++)
-                        //{
-                        //    string line = str.ReadLine();
-                        //    string[] arrayOfPieces = line.Split('|');
-
-                        //    for (int j = 0; j < 5; j++)
-                        //    {
-                        //        string slotID = arrayOfPieces[0];
-                        //        Type productType = classifications[slotID.Substring(0, 1)];
-                        //        VendableItem item = (VendableItem)Activator.CreateInstance(productType, decimal.Parse(arrayOfPieces[2]), arrayOfPieces[1]);
-                        //        itemsList.Add(item);
-                        //    }
-                        //    inventory.Add(arrayOfPieces[0], itemsList);
-                        //}
-                        //for (int i = 0; i < 4; i++)
-                        //{
-
-                        //    string line = str.ReadLine();
-                        //    string[] arrayOfPieces = line.Split('|');
-
-                        //    for (int j = 0; j < 5; j++)
-                        //    {
-                        //        itemsList.Add(new Chips(decimal.Parse(arrayOfPieces[2]), arrayOfPieces[1]));
-                        //    }
-                        //    inventory.Add(arrayOfPieces[0], itemsList);
-                        //}
-                        //for (int i = 0; i < 4; i++)
-                        //{
-
-                        //    string line = str.ReadLine();
-                        //    string[] arrayOfPieces = line.Split('|');
-
-                        //    for (int j = 0; j < 5; j++)
-                        //    {
-                        //        itemsList.Add(new Candy(decimal.Parse(arrayOfPieces[2]), arrayOfPieces[1]));
-                        //    }
-                        //    inventory.Add(arrayOfPieces[0], itemsList);
-                        //}
-                        //for (int i = 0; i < 4; i++)
-                        //{
-                        //    string line = str.ReadLine();
-                        //    string[] arrayOfPieces = line.Split('|');
-
-                        //    for (int j = 0; j < 5; j++)
-                        //    {
-                        //        itemsList.Add(new Beverage(decimal.Parse(arrayOfPieces[2]), arrayOfPieces[1]));
-                        //    }
-                        //    inventory.Add(arrayOfPieces[0], itemsList);
-                        //}
-                        //for (int i = 0; i < 4; i++)
-                        //{
-                        //    string line = str.ReadLine();
-                        //    string[] arrayOfPieces = line.Split('|');
-
-                        //    for (int j = 0; j < 5; j++)
-                        //    {
-                        //        itemsList.Add(new Gum(decimal.Parse(arrayOfPieces[2]), arrayOfPieces[1]));
-                        //    }
-                        //    inventory.Add(arrayOfPieces[0], itemsList);
-                        //}
                     }
                 }
                 
